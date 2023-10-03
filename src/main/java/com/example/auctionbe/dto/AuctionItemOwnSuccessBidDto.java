@@ -9,13 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BidAuctionItemDto {
+public class AuctionItemOwnSuccessBidDto {
     Long id;
-    String name;
-    String type;
-    String description;
     String owner;
+    Double amount;
     String date;
-    String location;
-    String image;
 }

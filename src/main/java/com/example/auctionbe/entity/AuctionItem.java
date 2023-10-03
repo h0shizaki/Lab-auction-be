@@ -26,4 +26,7 @@ public class AuctionItem {
     @OneToMany(mappedBy = "auctionItem")
     @Builder.Default
     List<Bid> ownBids = new ArrayList<>();
+
+    @OneToOne
+    Bid successBid = null ;
 }

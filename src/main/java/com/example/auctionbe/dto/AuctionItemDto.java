@@ -22,4 +22,5 @@ public class AuctionItemDto {
     String location;
     String image;
     List<AuctionItemOwnBidsDto> ownBids = new ArrayList<>() ;
+    AuctionItemOwnSuccessBidDto successBid = null ;
 }
