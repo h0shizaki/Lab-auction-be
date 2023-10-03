@@ -2,11 +2,11 @@ package com.example.auctionbe.dao;
 
 import com.example.auctionbe.entity.AuctionItem;
 import com.example.auctionbe.repository.AuctionItemRepository;
-import com.example.auctionbe.service.AuctionItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -35,5 +35,15 @@ public class AuctionItemDaoDbImpl implements AuctionItemDao{
     @Override
     public AuctionItem save(AuctionItem auctionItem){
         return auctionItemRepository.save(auctionItem);
+    }
+
+    @Override
+    public Page<AuctionItem> getAuctionItems(String title, Pageable page) {
+        return auctionItemRepository.findByNameContainingOrDescriptionContaining(title,title,page);
+    }
+
+    @Override
+    public Page<AuctionItem> getAuctionItems(Double amount, Pageable pageRequest){
+        return auctionItemRepository.findBySuccessBidAmountLessThan(amount, pageRequest);
     }
 }

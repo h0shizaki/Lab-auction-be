@@ -21,7 +21,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         a1 = auctionItemRepository.save(
                 AuctionItem.builder()
                         .id(1L)
-                        .name("Aisha Image")
+                        .name("Rare Aisha Image")
                         .description("Green Cat Picture")
                         .owner("Aisha")
                         .date("02/Oct/2023")

@@ -5,6 +5,7 @@ import com.example.auctionbe.service.AuctionItemService;
 import com.example.auctionbe.util.LabMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +21,22 @@ public class AuctionItemController {
     final AuctionItemService auctionItemService;
 
     @GetMapping("items")
-    public ResponseEntity<?> getAuctionItemList(@RequestParam(value = "_limit", required = false) Integer perPage, @RequestParam(value = "_page", required = false) Integer page){
+    public ResponseEntity<?> getAuctionItemList(@RequestParam(value = "_limit", required = false) Integer perPage,
+                                                @RequestParam(value = "_page", required = false) Integer page,
+                                                @RequestParam(value = "title", required = false) String title,
+                                                @RequestParam(value = "price", required = false) Double amount ) {
         perPage = perPage == null ? auctionItemService.getAuctionItemSize() : perPage;
         page = page == null ? 1 : page;
         Page<AuctionItem> pageOutput;
-        pageOutput = auctionItemService.getAuctionItems(perPage, page);
+
+        if (title != null) {
+            pageOutput = auctionItemService.getAuctionItems(title, PageRequest.of(page - 1, perPage));
+        }else if (amount != null){
+            pageOutput = auctionItemService.getAuctionItems(amount, PageRequest.of(page - 1, perPage));
+        }
+        else {
+            pageOutput = auctionItemService.getAuctionItems(perPage, page);
+        }
         HttpHeaders responseHeader = new HttpHeaders();
         responseHeader.set("x-total-count", String.valueOf(pageOutput.getTotalElements()));
         return new
