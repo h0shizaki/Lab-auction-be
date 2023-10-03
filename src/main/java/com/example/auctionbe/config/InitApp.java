@@ -17,16 +17,16 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
-        AuctionItem a1,a2,a3,a4,a5;
+        AuctionItem a1, a2, a3, a4, a5;
         a1 = auctionItemRepository.save(
                 AuctionItem.builder()
                         .id(1L)
                         .name("Rare Aisha Image")
-                        .description("Green Cat Picture")
+                        .description("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque consequat ligula ac volutpat.")
                         .owner("Aisha")
                         .date("02/Oct/2023")
                         .location("BKK Thailand")
-                        .image("https://cdn.waifu.im/1546.png")
+                        .image("http://via.placeholder.com/360x360")
                         .type("Arts")
                         .build()
         );
@@ -75,7 +75,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .date("03/Oct/2023")
                         .location("Washington DC")
                         .type("Arts")
-                        .image("https://en.wikipedia.org/wiki/File:DeMolenRembrandt.jpg")
+                        .image("http://via.placeholder.com/360x360")
                         .build()
         );
 

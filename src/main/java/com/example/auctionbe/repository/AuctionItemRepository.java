@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface AuctionItemRepository extends JpaRepository<AuctionItem, Long> {
     List<AuctionItem> findAll();
-    Page<AuctionItem> findByNameContainingOrDescriptionContaining(String name, String description, Pageable pageRequest);
+    Page<AuctionItem> findByNameContainingOrDescriptionContainingOrTypeContaining(String name, String description, String type, Pageable pageRequest);
     Page<AuctionItem> findBySuccessBidAmountLessThan(Double amount, Pageable pageRequest);
 
 }
